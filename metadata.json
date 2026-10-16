@@ -1,0 +1,6 @@
+{
+  "name": "Pest Off",
+  "description": "Nottingham-based pest control contractor providing commercial and residential pest eradication services across Nottingham and the East Midlands.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

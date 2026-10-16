@@ -1,0 +1,13 @@
+<svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean Modern Pest Off Emblem & Wordmark (Matching PestPro archetype) -->
+  <g id="logo-mark">
+    <!-- Vibrant lime-olive circular emblem -->
+    <circle cx="24" cy="24" r="20" fill="#84cc16" />
+    <path d="M19 13H26C29.866 13 33 16.134 33 20C33 23.866 29.866 27 26 27H23.5V35H19V13ZM23.5 22.8H25.8C27.3464 22.8 28.6 21.5464 28.6 20C28.6 18.4536 27.3464 17.2 25.8 17.2H23.5V22.8Z" fill="#14351b" />
+  </g>
+  <!-- Clean bold typography: PEST in dark forest green, OFF in bright olive -->
+  <text x="56" y="32" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="26" font-weight="900" letter-spacing="-0.5">
+    <tspan fill="#14351b">PEST</tspan>
+    <tspan dx="4" fill="#65a30d">OFF</tspan>
+  </text>
+</svg>
