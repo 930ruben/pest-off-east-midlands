@@ -216,10 +216,15 @@ export function CommercialPage({ onNavigate }: CommercialPageProps) {
             ) : (
               <form onSubmit={handleSubmit} className="bg-[var(--color-surface)] text-stone-900 theme-card p-6 sm:p-8 space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Name *</label>
+                  <label htmlFor="commercial-name" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Name <span aria-hidden="true">*</span>
+                  </label>
                   <input
+                    id="commercial-name"
+                    name="name"
                     type="text"
                     required
+                    aria-required="true"
                     placeholder="Contact name or company (e.g. David Miller - Oakfield Care)"
                     className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"
                   />
@@ -227,19 +232,29 @@ export function CommercialPage({ onNavigate }: CommercialPageProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Phone / Email *</label>
+                    <label htmlFor="commercial-contact" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Phone / Email <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="commercial-contact"
+                      name="contact"
                       type="text"
                       required
+                      aria-required="true"
                       placeholder={`e.g. ${siteConfig.phone} or email`}
                       className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Location *</label>
+                    <label htmlFor="commercial-location" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Location <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="commercial-location"
+                      name="location"
                       type="text"
                       required
+                      aria-required="true"
                       placeholder="e.g. Colwick Industrial Estate, Nottingham"
                       className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"
                     />
@@ -247,8 +262,12 @@ export function CommercialPage({ onNavigate }: CommercialPageProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Details / Notes</label>
+                  <label htmlFor="commercial-notes" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Details / Notes
+                  </label>
                   <textarea
+                    id="commercial-notes"
+                    name="notes"
                     rows={4}
                     placeholder="Facility type, current issues, or contract requirements (e.g. monthly visits, audit compliance)..."
                     className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"

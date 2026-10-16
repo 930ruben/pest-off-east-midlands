@@ -269,10 +269,15 @@ export function LocationDetailPage({ slug, onNavigate }: LocationDetailPageProps
             ) : (
               <form onSubmit={handleSubmit} className="bg-[var(--color-surface)] text-stone-900 theme-card p-6 sm:p-8 space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Name *</label>
+                  <label htmlFor="location-detail-name" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Name <span aria-hidden="true">*</span>
+                  </label>
                   <input
+                    id="location-detail-name"
+                    name="name"
                     type="text"
                     required
+                    aria-required="true"
                     placeholder="e.g. John Smith"
                     className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"
                   />
@@ -280,19 +285,29 @@ export function LocationDetailPage({ slug, onNavigate }: LocationDetailPageProps
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Phone / Email *</label>
+                    <label htmlFor="location-detail-contact" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Phone / Email <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="location-detail-contact"
+                      name="contact"
                       type="text"
                       required
+                      aria-required="true"
                       placeholder={`e.g. ${siteConfig.phone} or email`}
                       className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Location *</label>
+                    <label htmlFor="location-detail-location" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Location <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="location-detail-location"
+                      name="location"
                       type="text"
                       required
+                      aria-required="true"
                       defaultValue={location.name}
                       placeholder={`e.g. ${location.name}`}
                       className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800 font-medium"
@@ -301,8 +316,12 @@ export function LocationDetailPage({ slug, onNavigate }: LocationDetailPageProps
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Details / Notes</label>
+                  <label htmlFor="location-detail-notes" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Details / Notes
+                  </label>
                   <textarea
+                    id="location-detail-notes"
+                    name="notes"
                     rows={4}
                     placeholder={`Provide details about the pest issue in ${location.name}, property type, or specific concerns...`}
                     className="w-full px-3.5 py-2.5 text-xs bg-stone-50 border border-stone-200/80 rounded-xl focus:outline-emerald-800"

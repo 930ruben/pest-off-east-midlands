@@ -177,10 +177,15 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
             ) : (
               <form onSubmit={handleSubmit} className="bg-[var(--color-surface)] text-stone-900 theme-card p-6 sm:p-8 space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Name *</label>
+                  <label htmlFor="contact-name" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Name <span aria-hidden="true">*</span>
+                  </label>
                   <input
+                    id="contact-name"
+                    name="name"
                     type="text"
                     required
+                    aria-required="true"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your full name (e.g. Richard Walker)"
@@ -190,10 +195,15 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Phone / Email *</label>
+                    <label htmlFor="contact-info" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Phone / Email <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="contact-info"
+                      name="contact"
                       type="text"
                       required
+                      aria-required="true"
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                       placeholder="Phone number or email address"
@@ -201,10 +211,15 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-stone-700 mb-1.5">Location *</label>
+                    <label htmlFor="contact-location" className="block text-xs font-bold text-stone-700 mb-1.5">
+                      Location <span aria-hidden="true">*</span>
+                    </label>
                     <input
+                      id="contact-location"
+                      name="location"
                       type="text"
                       required
+                      aria-required="true"
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       placeholder="e.g. West Bridgford, Nottingham, or postcode"
@@ -214,8 +229,12 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-stone-700 mb-1.5">Details / Notes</label>
+                  <label htmlFor="contact-notes" className="block text-xs font-bold text-stone-700 mb-1.5">
+                    Details / Notes
+                  </label>
                   <textarea
+                    id="contact-notes"
+                    name="notes"
                     rows={4}
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}

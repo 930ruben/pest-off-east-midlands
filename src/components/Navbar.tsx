@@ -58,6 +58,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
         className="w-full sticky top-1 sm:top-2.5 z-40 px-1.5 sm:px-3 lg:px-4 max-w-7xl mx-auto"
       >
         <header
+          role="banner"
           className="w-full rounded-2xl sm:rounded-3xl border border-white/70 overflow-hidden transition-all duration-300"
           style={{
             background: isScrolled 
@@ -71,14 +72,20 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
         >
           <div className="w-full px-3 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-12 sm:h-16 lg:h-19 gap-2 sm:gap-4">
-              {/* Logo on Left (compact and clean on mobile) */}
-              <div className="flex-shrink-0 cursor-pointer flex items-center py-0.5" onClick={() => handleNavClick('home')}>
+              {/* Logo on Left (semantic button with clear accessible name) */}
+              <button
+                type="button"
+                onClick={() => handleNavClick('home')}
+                aria-label="Pest Off East Midlands homepage"
+                className="flex-shrink-0 cursor-pointer flex items-center py-0.5 border-0 bg-transparent p-0 text-left focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] rounded-lg"
+              >
                 <PestOffLogo />
-              </div>
+              </button>
 
               {/* Center Navigation Links (Multi-page) - Full size on Desktop only */}
-              <nav className="hidden lg:flex items-center gap-3 xl:gap-6 2xl:gap-7">
+              <nav aria-label="Primary Navigation" className="hidden lg:flex items-center gap-3 xl:gap-6 2xl:gap-7">
                 <button
+                  type="button"
                   onClick={() => handleNavClick('home')}
                   className={`font-semibold text-sm transition-colors cursor-pointer py-2 px-2.5 rounded-lg ${
                     currentPage === 'home'
@@ -90,6 +97,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => handleNavClick('residential')}
                   className={`font-semibold text-sm transition-colors cursor-pointer py-2 px-2.5 rounded-lg ${
                     currentPage === 'residential'
@@ -101,6 +109,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 </button>
 
                 <button
+                  type="button"
                   onClick={() => handleNavClick('commercial')}
                   className={`font-semibold text-sm transition-colors cursor-pointer py-2 px-2.5 rounded-lg ${
                     currentPage === 'commercial'
@@ -117,7 +126,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   onMouseEnter={() => setLocationsOpen(true)}
                 >
                   <button
+                    type="button"
                     onClick={() => handleNavClick('locations')}
+                    aria-haspopup="true"
+                    aria-expanded={locationsOpen}
+                    aria-controls="locations-dropdown-menu"
+                    aria-label="Browse service areas menu"
                     className={`flex items-center gap-1.5 font-semibold text-sm transition-colors cursor-pointer py-2 px-2.5 rounded-lg ${
                       locationsOpen || currentPage === 'locations' || currentPage === 'location-detail'
                         ? 'text-[var(--color-accent-dark)] font-bold bg-stone-100/70'
@@ -130,6 +144,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 </div>
 
                 <button
+                  type="button"
                   onClick={() => handleNavClick('contact')}
                   className={`font-semibold text-sm transition-colors cursor-pointer py-2 px-2.5 rounded-lg ${
                     currentPage === 'contact'
@@ -167,9 +182,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               {/* Mobile Right: Transparent Burger button, vertically centered with Logo */}
               <div className="lg:hidden flex items-center justify-center flex-shrink-0">
                 <button
+                  type="button"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   className="p-1.5 text-stone-800 hover:text-[var(--color-primary)] active:text-[var(--color-primary)] bg-transparent hover:bg-transparent border-0 outline-none focus:outline-none focus:ring-0 ring-0 shadow-none transition-transform active:scale-95 cursor-pointer flex items-center justify-center"
-                  aria-label="Toggle navigation menu"
+                  aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  aria-expanded={mobileMenuOpen}
+                  aria-controls="mobile-navigation-menu"
                 >
                   {mobileMenuOpen ? <X className="w-6 h-6 sm:w-7 sm:h-7 text-stone-900" /> : <Menu className="w-6 h-6 sm:w-7 sm:h-7 text-stone-900" />}
                 </button>
@@ -178,6 +196,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
             {/* Expanding Mobile Menu directly animated from the Sticky Top Bar */}
             <div
+              id="mobile-navigation-menu"
               className={`lg:hidden grid transition-all duration-300 ease-in-out ${
                 mobileMenuOpen
                   ? 'grid-rows-[1fr] opacity-100 border-t border-stone-200/40 pb-4 pt-2.5'
@@ -185,9 +204,10 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               }`}
             >
               <div className="overflow-hidden">
-                <div className="space-y-2 pt-1 max-w-xl mx-auto">
+                <nav aria-label="Mobile Navigation" className="space-y-2 pt-1 max-w-xl mx-auto">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                     <button
+                      type="button"
                       onClick={() => handleNavClick('home')}
                       className={`w-full text-left py-2 px-3.5 font-semibold rounded-xl text-sm transition-colors ${
                         currentPage === 'home'
@@ -198,6 +218,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       Home
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleNavClick('residential')}
                       className={`w-full text-left py-2 px-3.5 font-semibold rounded-xl text-sm transition-colors ${
                         currentPage === 'residential'
@@ -208,6 +229,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       Residential Pest Control
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleNavClick('commercial')}
                       className={`w-full text-left py-2 px-3.5 font-semibold rounded-xl text-sm transition-colors ${
                         currentPage === 'commercial'
@@ -218,6 +240,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       Commercial Pest Contracts
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleNavClick('locations')}
                       className={`w-full text-left py-2 px-3.5 font-semibold rounded-xl text-sm transition-colors ${
                         currentPage === 'locations' || currentPage === 'location-detail'
@@ -228,6 +251,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       All Locations
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleNavClick('contact')}
                       className={`w-full text-left py-2 px-3.5 font-semibold rounded-xl text-sm transition-colors sm:col-span-2 ${
                         currentPage === 'contact'
@@ -241,6 +265,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
                   <div className="pt-3 border-t border-stone-200/40 flex flex-col sm:flex-row items-center justify-between gap-2.5">
                     <button
+                      type="button"
                       onClick={() => handleNavClick('contact')}
                       className="btn-squish-primary w-full sm:w-auto py-2.5 px-6 text-sm font-semibold"
                     >
@@ -249,6 +274,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                     <a
                       href={`tel:${siteConfig.phoneRaw}`}
                       className="flex items-center justify-center gap-2 py-1.5 px-3 text-stone-900 font-bold text-sm hover:text-[var(--color-accent-dark)] transition-colors"
+                      aria-label={`Call ${siteConfig.phone}`}
                     >
                       <div className="w-7 h-7 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-[var(--color-accent)] flex-shrink-0">
                         <Phone className="w-3.5 h-3.5" />
@@ -256,7 +282,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       <span>Call {siteConfig.phone}</span>
                     </a>
                   </div>
-                </div>
+                </nav>
               </div>
             </div>
           </div>
@@ -265,6 +291,9 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
         {/* LOCATIONS DROPDOWN - Sibling to header, optical frosted glass without drop shadow */}
         {locationsOpen && (
           <div
+            id="locations-dropdown-menu"
+            role="region"
+            aria-label="Service Areas Coverage"
             onMouseEnter={() => setLocationsOpen(true)}
             onMouseLeave={() => setLocationsOpen(false)}
             className="absolute top-full left-0 right-0 w-full z-50 overflow-hidden mt-2 rounded-2xl sm:rounded-3xl border border-white/70"

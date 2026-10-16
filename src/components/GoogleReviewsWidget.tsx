@@ -34,19 +34,20 @@ export function GoogleReviewsWidget() {
                   {isFiveStars ? (
                     <>
                       <span className="font-extrabold text-stone-900 text-sm">5.0</span>
-                      <div className="flex text-[#FBBC05] gap-0.5" aria-label="5 out of 5 stars">
+                      <div className="flex text-[#FBBC05] gap-0.5" role="img" aria-label="5.0 out of 5 stars">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" />
+                          <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" aria-hidden="true" />
                         ))}
                       </div>
                     </>
                   ) : score && score > 0 ? (
                     <>
                       <span className="font-extrabold text-stone-900 text-sm">{score.toFixed(1)}</span>
-                      <div className="flex text-[#FBBC05] gap-0.5">
+                      <div className="flex text-[#FBBC05] gap-0.5" role="img" aria-label={`${score.toFixed(1)} out of 5 stars`}>
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
+                            aria-hidden="true"
                             className={`w-4 h-4 ${
                               i < Math.floor(score)
                                 ? 'fill-[#FBBC05] text-[#FBBC05]'
@@ -57,9 +58,9 @@ export function GoogleReviewsWidget() {
                       </div>
                     </>
                   ) : (
-                    <div className="flex text-[#FBBC05] gap-0.5" aria-label="Google rating stars">
+                    <div className="flex text-[#FBBC05] gap-0.5" role="img" aria-label="Google rating 5 stars">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" />
+                        <Star key={i} className="w-4 h-4 fill-[#FBBC05] text-[#FBBC05]" aria-hidden="true" />
                       ))}
                     </div>
                   )}

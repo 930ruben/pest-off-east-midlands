@@ -235,8 +235,17 @@ export function HomePage({ onNavigate }: HomePageProps) {
             {featuredLocations.map(loc => (
               <div
                 key={loc.slug}
+                role="button"
+                tabIndex={0}
+                aria-label={`View pest control details for ${loc.name}`}
                 onClick={() => onNavigate('location-detail', { slug: loc.slug })}
-                className="bg-[var(--color-surface)] p-4 sm:p-7 theme-card shadow-xs hover:shadow-sm transition-all cursor-pointer group flex flex-col justify-between"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onNavigate('location-detail', { slug: loc.slug });
+                  }
+                }}
+                className="bg-[var(--color-surface)] p-4 sm:p-7 theme-card shadow-xs hover:shadow-sm transition-all cursor-pointer group flex flex-col justify-between focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2.5 sm:mb-3">

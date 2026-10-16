@@ -77,18 +77,22 @@ export function LocationsPage({ onNavigate }: LocationsPageProps) {
             </div>
 
             <div className="relative w-full sm:w-80">
-              <Search className="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" aria-hidden="true" />
               <input
+                id="locations-search-input"
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search area (e.g. West Bridgford, Arnold)..."
+                aria-label="Search service areas across Nottinghamshire"
                 className="w-full pl-11 pr-4 py-2 text-xs bg-stone-50 border-none rounded-full focus:outline-emerald-800"
               />
               {searchTerm && (
                 <button
+                  type="button"
                   onClick={() => setSearchTerm('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 text-xs"
+                  aria-label="Clear area search input"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 text-xs cursor-pointer"
                 >
                   Clear
                 </button>

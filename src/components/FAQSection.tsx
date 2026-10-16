@@ -35,78 +35,94 @@ export function FAQSection() {
               Everything you need to know about our pest control treatments, pet-safe methods, and Nottingham coverage.
             </p>
 
-            {/* Search Bar */}
-            <div className="mt-4 sm:mt-6 max-w-md mx-auto relative">
-              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search questions (e.g. wasps, dogs, commercial)..."
-                className="w-full pl-9 sm:pl-11 pr-4 py-2 sm:py-3 rounded-full bg-stone-50 text-stone-900 text-xs sm:text-sm focus:outline-emerald-800 focus:bg-white"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-stone-400 hover:text-stone-700 cursor-pointer"
-                >
-                  Clear
-                </button>
+              {/* Search Bar */}
+              <div className="mt-4 sm:mt-6 max-w-md mx-auto relative">
+                <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" aria-hidden="true" />
+                <input
+                  id="faq-search-input"
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search questions (e.g. wasps, dogs, commercial)..."
+                  aria-label="Search frequently asked questions"
+                  className="w-full pl-9 sm:pl-11 pr-4 py-2 sm:py-3 rounded-full bg-stone-50 text-stone-900 text-xs sm:text-sm focus:outline-emerald-800 focus:bg-white"
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    aria-label="Clear FAQ search input"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-stone-400 hover:text-stone-700 cursor-pointer"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Accordion List */}
+            <div className="space-y-3.5">
+              {filteredFaqs.length === 0 ? (
+                <div className="text-center py-10 bg-stone-50 rounded-3xl">
+                  <p className="text-stone-600 font-medium text-sm">
+                    No matching questions found for "{searchQuery}".
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="mt-2 text-xs font-bold text-[#14351b] underline cursor-pointer"
+                  >
+                    Reset search
+                  </button>
+                </div>
+              ) : (
+                filteredFaqs.map((faq, index) => {
+                  const isOpen = openIndexes.includes(index);
+                  const buttonId = `faq-question-${index}`;
+                  const panelId = `faq-answer-${index}`;
+                  return (
+                    <div
+                      key={index}
+                      className={`rounded-2xl transition-all duration-200 overflow-hidden ${
+                        isOpen ? 'bg-[#f0f4f1]' : 'bg-stone-50 hover:bg-stone-100/80'
+                      }`}
+                    >
+                      <button
+                        type="button"
+                        id={buttonId}
+                        onClick={() => toggleAccordion(index)}
+                        className="w-full text-left px-6 py-4.5 flex items-center justify-between gap-4 select-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#14351b] rounded-2xl"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                      >
+                        <span className="font-bold text-[#14351b] text-base sm:text-lg leading-snug">
+                          {faq.question}
+                        </span>
+                        <div
+                          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                            isOpen ? 'rotate-180 bg-[#14351b] text-[#84cc16]' : 'bg-stone-200 text-stone-600'
+                          }`}
+                          aria-hidden="true"
+                        >
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
+                      </button>
+
+                      {isOpen && (
+                        <div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={buttonId}
+                          className="px-6 pb-5 pt-1 text-stone-700 text-sm leading-relaxed"
+                        >
+                          <p>{faq.answer}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })
               )}
             </div>
-          </div>
-
-          {/* Accordion List */}
-          <div className="space-y-3.5">
-            {filteredFaqs.length === 0 ? (
-              <div className="text-center py-10 bg-stone-50 rounded-3xl">
-                <p className="text-stone-600 font-medium text-sm">
-                  No matching questions found for "{searchQuery}".
-                </p>
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="mt-2 text-xs font-bold text-[#14351b] underline cursor-pointer"
-                >
-                  Reset search
-                </button>
-              </div>
-            ) : (
-              filteredFaqs.map((faq, index) => {
-                const isOpen = openIndexes.includes(index);
-                return (
-                  <div
-                    key={index}
-                    className={`rounded-2xl transition-all duration-200 overflow-hidden ${
-                      isOpen ? 'bg-[#f0f4f1]' : 'bg-stone-50 hover:bg-stone-100/80'
-                    }`}
-                  >
-                    <button
-                      onClick={() => toggleAccordion(index)}
-                      className="w-full text-left px-6 py-4.5 flex items-center justify-between gap-4 select-none cursor-pointer"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="font-bold text-[#14351b] text-base sm:text-lg leading-snug">
-                        {faq.question}
-                      </span>
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180 bg-[#14351b] text-[#84cc16]' : 'bg-stone-200 text-stone-600'
-                        }`}
-                      >
-                        <ChevronDown className="w-4 h-4" />
-                      </div>
-                    </button>
-
-                    {isOpen && (
-                      <div className="px-6 pb-5 pt-1 text-stone-700 text-sm leading-relaxed">
-                        <p>{faq.answer}</p>
-                      </div>
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div>
 
           {/* Prompt card */}
           <div className="mt-10 p-6 rounded-3xl bg-[#f0f4f1] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">

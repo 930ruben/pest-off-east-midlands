@@ -10,7 +10,7 @@ export function Footer({ onNavigate }: FooterProps) {
   const popularFooterLocations = allNottinghamLocations.slice(0, 6);
 
   return (
-    <footer className="w-full bg-[#0f2314] text-stone-300 pt-10 sm:pt-14 pb-3.5 sm:pb-4 shadow-xs rounded-2xl sm:rounded-3xl lg:rounded-4xl overflow-hidden">
+    <footer role="contentinfo" className="w-full bg-[#0f2314] text-stone-300 pt-10 sm:pt-14 pb-3.5 sm:pb-4 shadow-xs rounded-2xl sm:rounded-3xl lg:rounded-4xl overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Accreditations Row */}
         <div className="pb-6 mb-8 border-b border-stone-800/80 grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -65,6 +65,7 @@ export function Footer({ onNavigate }: FooterProps) {
             <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
               Navigation
             </h4>
+            <nav aria-label="Footer Navigation">
             <ul className="space-y-2.5 text-xs">
               <li>
                 <button
@@ -133,6 +134,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
             </ul>
+            </nav>
           </div>
 
           {/* Col 3: Popular Local Areas */}

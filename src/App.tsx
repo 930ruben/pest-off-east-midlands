@@ -47,6 +47,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f7f9f7] text-[#141f17] font-sans selection:bg-[#84cc16]/30 selection:text-[#14351b]">
+      {/* Accessible Skip Link for Keyboard Users & AI Assistive Agents */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#14351b] focus:text-white focus:rounded-lg focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#84cc16] text-xs font-bold"
+      >
+        Skip to main content
+      </a>
+
       {/* Top Navbar */}
       <Navbar
         currentPage={currentPage}
@@ -54,7 +62,7 @@ export default function App() {
       />
 
       {/* Multi-Page Routed View */}
-      <main className="flex-1 px-1.5 sm:px-3 lg:px-4 pt-1 sm:pt-2 lg:pt-3">
+      <main id="main-content" role="main" className="flex-1 px-1.5 sm:px-3 lg:px-4 pt-1 sm:pt-2 lg:pt-3">
         {currentPage === 'home' && (
           <HomePage onNavigate={handleNavigate} />
         )}

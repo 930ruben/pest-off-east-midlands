@@ -1,5 +1,33 @@
+# Allow all crawlers and search engines
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Explicit permissions for AI agents & assistant search
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemaps & AI Agent Manifest
 Sitemap: https://pestoffeastmidlands.co.uk/sitemap.xml
+# LLMs manifest
+# https://pestoffeastmidlands.co.uk/llms.txt
