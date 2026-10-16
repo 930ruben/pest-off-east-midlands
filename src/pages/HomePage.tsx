@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { siteConfig, allServices, allNottinghamLocations } from '../config/siteConfig';
+import { ResponsiveHeroImage } from '../components/ResponsiveHeroImage';
 import { PartnerMarquee } from '../components/PartnerMarquee';
 import { GoogleReviewsWidget } from '../components/GoogleReviewsWidget';
 import { FAQSection } from '../components/FAQSection';
@@ -30,22 +31,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="w-full relative overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-4xl bg-[var(--color-primary)] text-white flex flex-col sm:flex-row sm:items-center shadow-xs">
         {/* Mobile Dedicated Image Container (placed above Nottingham Pest Control) */}
         <div className="block sm:hidden w-full h-44 sm:h-52 relative overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center -scale-x-100"
-            style={{ 
-              backgroundImage: `url('${siteConfig.hero.bgImage}')`,
-            }}
+          <ResponsiveHeroImage
+            className="absolute inset-0 w-full h-full object-cover object-center -scale-x-100"
+            priority={true}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)] via-transparent to-black/10" />
         </div>
 
         {/* Desktop Background Photo (covers full card on desktop) */}
-        <div 
-          className="hidden sm:block absolute inset-0 bg-cover bg-center transition-transform duration-700 -scale-x-100"
-          style={{ 
-            backgroundImage: `url('${siteConfig.hero.bgImage}')`,
-          }}
-        />
+        <div className="hidden sm:block absolute inset-0 overflow-hidden">
+          <ResponsiveHeroImage
+            className="w-full h-full object-cover object-center transition-transform duration-700 -scale-x-100"
+            priority={true}
+          />
+        </div>
 
         {/* Desktop Directional Gradient Overlay */}
         <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[#14351b]/95 via-[#14351b]/85 sm:via-[#14351b]/60 to-black/25" />

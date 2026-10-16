@@ -45,10 +45,19 @@
     <!-- Performance & Font Optimization: Preconnect & DNS-Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://images.pexels.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/4176366/pexels-photo-4176366.jpeg" fetchpriority="high" />
+
+    <!-- Responsive Hero Image Preload for Fast Mobile LCP -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/assets/hero/hero-mobile.webp"
+      imagesrcset="/assets/hero/hero-mobile.webp 640w, /assets/hero/hero-mobile-2x.webp 960w, /assets/hero/hero-tablet.webp 1280w, /assets/hero/hero-desktop.webp 1920w"
+      imagesizes="(max-width: 639px) 100vw, (max-width: 1023px) 100vw, 1280px"
+      fetchpriority="high"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
       rel="stylesheet"

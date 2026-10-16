@@ -22,6 +22,14 @@ export interface SiteConfig {
     title: string;
     subtitle: string;
     bgImage: string;
+    responsiveImages?: {
+      mobileSlow: string;
+      mobile: string;
+      mobile2x: string;
+      tablet: string;
+      desktop: string;
+      fallback: string;
+    };
   };
   banner: {
     headline: string;
@@ -71,7 +79,15 @@ export const siteConfig: SiteConfig = {
     badge: "BPCA Certified Nottinghamshire Contractor",
     title: "Pest Control for the East Midlands",
     subtitle: "Pest Off handles insects, rodents, wasps, and birds discreetly and with care. Fast, dependable eradication for homes and businesses across Nottingham and the East Midlands.",
-    bgImage: "https://images.pexels.com/photos/4176366/pexels-photo-4176366.jpeg",
+    bgImage: "/assets/hero/hero-desktop.webp",
+    responsiveImages: {
+      mobileSlow: "/assets/hero/hero-mobile-slow.webp",
+      mobile: "/assets/hero/hero-mobile.webp",
+      mobile2x: "/assets/hero/hero-mobile-2x.webp",
+      tablet: "/assets/hero/hero-tablet.webp",
+      desktop: "/assets/hero/hero-desktop.webp",
+      fallback: "/assets/hero/hero-fallback.jpg",
+    },
   },
 
   // CALLOUT BANNER VARIABLES
