@@ -20,6 +20,9 @@ export function LocationHeroMap({ location, className = '' }: LocationHeroMapPro
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
 
     if (!apiKey || !mapRef.current) {
+      if (!apiKey && isMounted) {
+        setLoadError(true);
+      }
       return;
     }
 
